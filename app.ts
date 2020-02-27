@@ -2,12 +2,17 @@ import express from 'express';
 
 const app = express();
 
+const jsonResponse = JSON.parse(
+  `{"response_type": "in_channel","text": "Hello World from AWS Lambda"}`
+);
+
+const jsonResponse2 = {
+  response_type: 'in_channel',
+  text: 'This is a brand new bag @graham'
+};
+
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.send(jsonResponse2);
 });
 
-const port = process.env.PORT || 3000;
-
-app.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
-});
+module.exports = app;
